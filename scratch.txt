@@ -1,0 +1,69 @@
+
+Introduction
+    - "In a few years, only a fraction of the computing power will be used" (see streamcomputing)
+    - trends until 2003: increase f_clk => faster program, same code
+        since 2003: f_clk remains unchanged ; N_cores increases => need to adapt the code.
+        There is no longer "Just wait 18 months, my program will be twice faster" (see "your free lunch is over")
+
+
+
+Basic concepts
+---------------
+Context, Queue, instructions. (a)synchronous.
+    This encapsulation is OOP-friendly
+Host, device, kernel. On-the-fly compilation.
+Software: Grid, blocks, threads
+Hardware: Stream Multiprocessors, Warps, cores
+
+Differences between other programming paradigms
+    wrt OMP : fine thread control, explicit communications, host/device distinction, ...
+
+
+Memory
+--------
+
+GPU: no virtual memory => no "electric fence" => no segfault. The memory can be corrupted !
+Most of the times, performances are memory-related. Thus, memory access are crucial !
+Warm-up : which is fastest: y*Nc + x  or  x*Nr + y ?  (on CPU and GPU).
+
+Latency and bandwidth
+    Give figures for BW on recent GPU (DH, HD, DD).
+    time = latency + bandwidth*nbits
+    kernels should "make the memory transfers worth". No speed-up if most of the time is spent transfering the data !
+    Nvidia visual profiler, OpenCL events and profiling mode
+
+Element-wise
+-------------
+add
+flat-field
+# Block size is free to tune
+
+Gather
+-------
+2x2 binning
+convolution/gradient/Haar transform
+# block size is often imposed
+
+Reduction
+----------
+min/max/sum
+histogram
+# block size is application-dependent
+
+
+Linear Algebra and Fourier Transforms
+--------------------------------------
+cublas, cufft => easy to call from CUDA C/C++ ; python wrappers (eg. pyfft)
+clblas, clfft => ?
+
+
+
+CUDA vs OpenCL
+---------------
+Performance portable
+Open issues regarding OpenCL
+    - Will OpenCL remain a serious competitor of CUDA ? (AMD is going CUDA, Nvidia does not maintain OpenCL anymore, bugs in Apple's implementation, ...)
+    - OpenCL 2.x in Linux (eg. Intel's Beignet driver)
+
+
+

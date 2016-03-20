@@ -5,6 +5,7 @@ Introduction
         since 2003: f_clk remains unchanged ; N_cores increases => need to adapt the code.
         There is no longer "Just wait 18 months, my program will be twice faster" (see "your free lunch is over")
 
+GPU architecture
 
 
 Basic concepts

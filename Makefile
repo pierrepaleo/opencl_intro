@@ -5,19 +5,22 @@ LANDSLIDE_OPTIONS=--embed --linenos=table
 LANDSLIDE=$(HOME)/.local/bin/landslide
 
 
-all: createdir Intro Basics
+all: createdir presentation
 
 createdir:
 	mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)/html
+	mkdir -p $(BUILD_DIR)/pdf
 
 
 Intro:
-	$(LANDSLIDE) $(LANDSLIDE_OPTIONS) --destination=$(BUILD_DIR)/0_Intro.html 0_Intro/index.rst
+	$(LANDSLIDE) $(LANDSLIDE_OPTIONS) --destination=$(BUILD_DIR)/html/0_Intro.html 0_Intro/index.rst
 
 Basics:
-	$(LANDSLIDE) $(LANDSLIDE_OPTIONS) --destination=$(BUILD_DIR)/1_Basics.html 1_Basics/index.rst
+	$(LANDSLIDE) $(LANDSLIDE_OPTIONS) --destination=$(BUILD_DIR)/html/1_Basics.html 1_Basics/index.rst
 
-
+presentation:
+	$(LANDSLIDE) config.cfg
 
 
 

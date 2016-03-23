@@ -77,10 +77,10 @@ Consider the following C code. Which loop is the most efficient ?
 
 ----
 
-GPU warps
-----------
+Cache lines
+-------------
 
-* On CPU, memory access are cached
+* On CPU and GPU, memory access are cached
 * C-like languages (C, C++, OpenCL, CUDA) are row-major. The first version is more efficient.
 
   
@@ -89,7 +89,7 @@ GPU warps
    :width: 400
    
 
-* On GPU, memory is accessed by **warps** of 32 threads
+* Example: On NVidia GPUs, memory is accessed by lines of 128 Bytes (32 elements of 4B)
     * Each load/store actually calls 32 memory transactions
     * This has to be taken into account when accessing memory !
     

@@ -10,12 +10,6 @@
 1. OpenCL basics
 =================
 
-----
-
-Outline
--------
-
-
 
 ----
 
@@ -171,22 +165,121 @@ Now that the kernel is written, it has to be called from the *host*.
     cl.enqueue_copy(queue, res, d_res)
     
     
+----
+
+Launching OpenCL kernels
+-------------------------
+
+Standard way to launch a kernel :
+
+* Build the kernel file
+    * On-the-fly compilation
+* Specify grid size and work group size
+* Launch program
+    * Watch out arguments types when using Python !
 
 
 
+.. notes: if long compilation, build the program at the beginning of the processing
+
+----
+
+Exercise
+-----------
+
+1) Write a kernel multiplying *even indices* of an array by two. This can be done in-place.
+2) Write the associated host code
+
+
+----
+
+Multi-dimensional grids
+------------------------
+
+* Remember that threads can be grouped to perform a task (*thread work group*)
+* All the launched threads belong to the *grid*
+* Grid and groups can be *N*-dimensional, hence the name ``NDRange``
+    * In practice *N* = 1, 2, 3
+
+
+Launching a kernel handling a 1D array:
+
+.. code-block:: python
+
+    gridsize = (N,)
+    groupsize = (1,)
+    program.gpu_add(queue, gridsize, groupsize, d_a, d_b, d_res, np.int32(N))
+    
+Launching a kernel handling a 2D array:
+
+.. code-block:: python
+
+    gridsize = (Ncols, Nrows) # Mind the convention !
+    groupsize = (16, 16)
+    program.gpu_add2D(queue, gridsize, groupsize, d_a, d_b, d_res, np.int32(Nr), np.int32(Nc))
+    
+
+----
+
+Threads: global and local index
+--------------------------------
+
+For given grid and work-group shapes, each threads are indexed with
+
+* The *global index* : position in the grid (``global_id : 0, 1, ..., global_size-1``)
+* The *local index* : position in the group (``local_id : 0, 1, ..., local_size-1``)
+
+.. figure:: ../images/gridblock.png
+   :align: center
+   :width: 300
 
 
 
+.. notes: ``local_id`` :math:`\in \; [0, \, \text{local_size}-1]`
+
+.. notes: ``global_id`` :math:`\in \; [0, \, \text{global_size}-1]`
+
+.. code-block:: C
+
+    unsigned int gid0 = get_global_id(0); // 0, ..., get_global_size(0) -1
+    unsigned int gid1 = get_global_id(1); // 0, ..., get_global_size(1) -1
+    unsigned int lid0 = get_local_id(0); // 0, ..., get_local_size(0) -1
+    unsigned int lid1 = get_local_id(1); // 0, ..., get_local_size(1) -1
 
 
+----
+
+Exercise
+---------
+
+1) Write a kernel taking a (2D) matrix as an input, and returning a block-matrix containing the values *I+J* where *I*, *J* are the group indices of dimensions 0, 1.
+
+Example for a ``(2, 2)`` work-group size:
+
+.. code-block:: python
+
+    0, 0, 1, 1, 2, 2, ...
+    0, 0, 1, 1, 2, 2, ...
+    1, 1, 2, 2, 3, 3, ...
+    1, 1, 2, 2, 3, 3, ...
+    .....................
+
+*You can use* ``get_group_id()`` *or* ``get_global_id()/get_local_size()``
+
+2) Write the associated host code, print the result and try with different work-group sizes.
 
 
+----
 
+Summary
+-------
 
+In this part, the following concepts were highlighted
 
+* Device, host, context, queue
+* thread, group, grid ; indices
 
-
-
+See also: `Intel - OpenCL basic concepts <https://software.intel.com/sites/landingpage/opencl/optimization-guide/Basic_Concepts.htm>`_
 
 
 

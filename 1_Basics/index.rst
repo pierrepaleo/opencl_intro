@@ -138,7 +138,7 @@ Now that the kernel is written, it has to be called from the *host*.
     
     import numpy as np
     import os
-    import pyopencl
+    import pyopencl as cl
     
     # Create context and queue
     ctx = cl.create_some_context()
@@ -147,9 +147,9 @@ Now that the kernel is written, it has to be called from the *host*.
     N = 10000
     a = np.arange(N, dtype=np.float32)
     b = np.ones((N,), dtype=np.float32)
-    d_a = cl.Buffer(ctx, a.nbytes)
-    d_b = cl.Buffer(ctx, b.nbytes)
-    d_res = cl.Buffer(ctx, b.nbytes)
+    d_a = cl.Buffer(ctx, cl.mem_flags.READ_WRITE, a.nbytes)
+    d_b = cl.Buffer(ctx, cl.mem_flags.READ_WRITE, b.nbytes)
+    d_res = cl.Buffer(ctx, cl.mem_flags.READ_WRITE, b.nbytes)
     # Copy "a" and "b" on the GPU
     cl.enqueue_copy(queue, d_a, a)
     cl.enqueue_copy(queue, d_b, b)
@@ -187,9 +187,9 @@ Standard way to launch a kernel :
 Exercise
 -----------
 
-1) Write a kernel multiplying *even indices* of an array by two. This can be done in-place.
-2) Write the associated host code
-
+1) Write a kernel performing a scalar addition of two arrays.
+2) Write the associated host code.
+3) Write another kernel multiplying *even indices* of an array by two. Write the associated host code.
 
 ----
 

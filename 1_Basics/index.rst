@@ -184,7 +184,7 @@ Standard way to launch a kernel :
 
 ----
 
-Exercise
+Exercises
 -----------
 
 1) Write a kernel performing a scalar addition of two arrays.

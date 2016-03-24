@@ -26,6 +26,52 @@ Introduction
 
 ----
 
+CPU-GPU links
+-------------
+
+.. figure:: ../images/links.png
+   :align: center
+   :width: 400
+
+
+
+----
+
+
+GPU Memory bandwidth
+----------------------
+
+Consummer-grade GPUs do not have symmetric bandwidth
+
+* Host->Device is faster than Device->Host
+* Device<->Device is much faster
+    * When possible, do all the processing on GPU: avoid Host<->Device transfers !
+
+
+
+.. code-block:: bash
+
+    GeForce GTX 750 Ti
+
+    Host to Device Bandwidth, 1 Device(s), Paged memory, direct access
+       Transfer Size (Bytes)	Bandwidth(MB/s)
+       33554432			4499.6
+    
+    Device to Host Bandwidth, 1 Device(s), Paged memory, direct access
+       Transfer Size (Bytes)	Bandwidth(MB/s)
+       33554432			5667.1
+    
+    Device to Device Bandwidth, 1 Device(s)
+       Transfer Size (Bytes)	Bandwidth(MB/s)
+       33554432			68640.8
+    
+    
+See: ``oclBandwidthTest`` and ``stream_icc`` utilities
+
+
+----
+
+
 Cache levels
 -------------
 
@@ -169,36 +215,7 @@ Example for Nvidia GPUs:
 See `<https://en.wikipedia.org/wiki/CUDA>`_
 
 
-----
 
-GPU Memory bandwidth
-----------------------
-
-Consummer-grade GPUs do not have symmetric bandwidth
-
-* Host->Device is faster than Device->Host
-* Device<->Device is much faster
-    * When possible, do all the processing on GPU: avoid Host<->Device transfers !
-
-
-
-.. code-block:: bash
-
-    GeForce GTX 750 Ti
-
-    Host to Device Bandwidth, 1 Device(s), Paged memory, direct access
-       Transfer Size (Bytes)	Bandwidth(MB/s)
-       33554432			4499.6
-    
-    Device to Host Bandwidth, 1 Device(s), Paged memory, direct access
-       Transfer Size (Bytes)	Bandwidth(MB/s)
-       33554432			5667.1
-    
-    Device to Device Bandwidth, 1 Device(s)
-       Transfer Size (Bytes)	Bandwidth(MB/s)
-       33554432			68640.8
-    
-    
 
 
 

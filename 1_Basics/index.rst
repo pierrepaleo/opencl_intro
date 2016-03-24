@@ -252,7 +252,7 @@ For given grid and work-group shapes, each threads are indexed with
 Exercise
 ---------
 
-1) Write a kernel taking a (2D) matrix as an input, and returning a block-matrix containing the values *I+J* where *I*, *J* are the group indices of dimensions 0, 1.
+1) Write a kernel taking returning a block-matrix containing the values *I+J* where *I*, *J* are the group indices of dimensions 0, 1.
 
 Example for a ``(2, 2)`` work-group size:
 
@@ -277,7 +277,8 @@ Summary
 In this part, the following concepts were highlighted
 
 * Device, host, context, queue
-* thread, group, grid ; indices
+* thread, group, grid
+* Kernel : source code executed by a device thread
 
 See also: `Intel - OpenCL basic concepts <https://software.intel.com/sites/landingpage/opencl/optimization-guide/Basic_Concepts.htm>`_
 

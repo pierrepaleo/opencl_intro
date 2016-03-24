@@ -64,7 +64,11 @@ Exercise
 ---------
 
 
-Profile execution time for a separable convolution *versus* a non-separable convolution.
+1) Profile execution time for a separable convolution *versus* a non-separable convolution.
+
+Kernels are available at `<https://github.com/pierrepaleo/opencl_intro/tree/master/solutions/opencl>`_
+
+2) Modify the work-group size. Which size gives you the best performances ?
 
 
 ----

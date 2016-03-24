@@ -12,15 +12,14 @@ Conclusion
 
 Take-home messages
 
+* Order of magnitude speed-up can be achieved with parallel programming
 * Non-negligible algorithmic work to write efficient parallel code
-* On discrete GPUs, avoid Device<->Host transfers when possible
-* Profile your code !
+* Don't trust your experience - profile your code !
 
 
 
 The following points were not addressed:
 
-* Work-group size optimization
 * Texture memory (another cached memory)
 * Other interesting patterns like scan and map-reduce
 

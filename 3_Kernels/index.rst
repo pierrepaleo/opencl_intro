@@ -56,6 +56,8 @@ Exercices
 
 2) Write a kernel performing the flat-field correction of an image.
 
+3) *More difficult*: Write a kernel performing a rotation of an image, given the center and an angle.
+
 ----
 
 Example: flat-field correction
@@ -112,6 +114,7 @@ Atomic operations
 
 **Note**: there is no atomic operations on ``float`` for OpenCL 1.x implementations !
 
+For a ``compare-exchange``-based implementation, see for example `<https://streamcomputing.eu/blog/2016-02-09/atomic-operations-for-floats-in-opencl-improved/>`_
 
 
 ----

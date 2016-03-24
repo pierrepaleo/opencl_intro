@@ -8,8 +8,8 @@
    </style>
 
 
-0. Introduction
-================
+Introduction to OpenCL
+=======================
 
 ----
 

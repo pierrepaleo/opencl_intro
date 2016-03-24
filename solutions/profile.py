@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import math
 from oclutils import Ocl
@@ -91,7 +94,7 @@ if __name__ == "__main__":
 
 
     # Show
-    #~ plt.figure()
-    #~ plt.imshow(res, cmap="gray", interpolation="nearest");
-    #~ plt.show()
+    # plt.figure()
+    # plt.imshow(res, cmap="gray", interpolation="nearest");
+    # plt.show()
 
